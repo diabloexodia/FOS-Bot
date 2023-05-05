@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chatbot UI</title>
+  </head>
+  <body>
+    <div id="chat-window">
+      <h1>Chatbot UI</h1>
+      <div id="output"></div>
+      <div id="input-container">
+        <input type="text" id="input" autocomplete="off" />
+        <button id="send">Send</button>
+      </div>
+    </div>
+
+    <script>
+      var output = document.getElementById("output");
+      var input = document.getElementById("input");
+      var send = document.getElementById("send");
+
+      send.onclick = function () {
+        var user_text = input.value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/get_response");
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.onload = function () {
+          var response = JSON.parse(xhr.responseText);
+          output.innerHTML += "<p><strong>You:</strong> " + user_text + "</p>";
+          output.innerHTML +=
+            "<p><strong>Bot:</strong> " + response.response + "</p>";
+          input.value = "";
+        };
+        xhr.send("text=" + user_text);
+      };
+
+      input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          send.click();
+        }
+      });
+    </script>
+  </body>
+</html>
