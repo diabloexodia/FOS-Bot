@@ -7,7 +7,7 @@ import warnings
 
 model_name = "sshleifer/distilbart-cnn-12-6"
 model_revision = "a4f8f3e"
-default_max_length =  450
+default_max_length =  193
 
 def summarize(text):
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
