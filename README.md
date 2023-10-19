@@ -2,7 +2,7 @@
 
 An innovative solution leveraging NLP techniques to aid visually impaired students in accessing textual information.
 
-+Features:  
+**Features:**  
 Text Summarization  
 Text Paraphrasing,  
 Inverted Indexing  
